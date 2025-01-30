@@ -16,6 +16,9 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
 builder.Services.AddScoped<IOrderDetailService, OrderDeatilService>();
 
+builder.Services.AddScoped<IProductDal, EFProductDal>();
+builder.Services.AddScoped<IProductService, ProductService >();
+
 builder.Services.AddScoped<IOrderDetailExtendDal, EFOrderDetailExtendDal>();
 builder.Services.AddScoped<IOrderDetailExtendService, OrderDetailExtendService>();
 

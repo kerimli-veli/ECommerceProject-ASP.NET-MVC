@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ProductListViewModel
+
+<p>
+    <a class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Unit in Stock</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Product)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitsInStock</td>
+                <td>
+                    <a class="btn btn-xs btn-success">Add To Card</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<product-list-pager current-category="@Model.CurrentCategory" >
+
+    current-page="@Model.CurrentPage"
+    page-count="@Model.PageCount"
+    page-size="@Model.PageSize">
+
+
+
+</product-list-pager>

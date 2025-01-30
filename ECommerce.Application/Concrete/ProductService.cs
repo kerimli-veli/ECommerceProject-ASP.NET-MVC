@@ -27,7 +27,7 @@ public class ProductService(IProductDal productDal) : IProductService
 
     public List<Product> GetAllByCategory(int categoryId)
     {
-        return _productDal.GetList(p => p.CategoryId == categoryId);
+        return _productDal.GetList(p => p.CategoryId == categoryId || categoryId==0 );
     }
 
     public Product GetById(int id)

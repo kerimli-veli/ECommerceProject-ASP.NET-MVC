@@ -30,11 +30,36 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    @* <div class="container">
+        <div class="row" >
+            <div class="col-md-2" >
+                @await Component.InvokeAsync("CategoryList")
+            </div>
+        </div>
+        <div class="col-md-10" >
+
+        </div>
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+    </div> *@
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-2">
+                @await Component.InvokeAsync("CategoryList")
+            </div>
+            <div class="col-md-10">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+
+        </div>
     </div>
+
 
     <footer class="border-top footer text-muted">
         <div class="container">
