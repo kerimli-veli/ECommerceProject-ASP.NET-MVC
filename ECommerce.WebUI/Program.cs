@@ -3,15 +3,24 @@ using ECommerce.Application.Concrete;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Context;
 using ECommerce.DataAccess.Implementation;
+using ECommerce.WebUI.Services;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<ICatSessionService , CartSessionService >();
+
 
 builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService , CartService>();
 
 builder.Services.AddScoped<IOrderDetailDal, EFOrderDetailDal>();
 builder.Services.AddScoped<IOrderDetailService, OrderDeatilService>();
@@ -49,6 +58,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

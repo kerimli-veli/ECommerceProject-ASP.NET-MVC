@@ -21,7 +21,7 @@
                 <td>@item.UnitPrice</td>
                 <td>@item.UnitsInStock</td>
                 <td>
-                    <a class="btn btn-xs btn-success">Add To Card</a>
+                    <a class="btn btn-xs btn-success" asp-controller="Cart" asp-action="AddToCart" asp-route-productId ="@item.ProductId"   >Add To Card</a>
                 </td>
             </tr>
         }

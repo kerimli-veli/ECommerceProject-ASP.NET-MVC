@@ -8,12 +8,12 @@ public class Cart
         CartLines = [];
     }
 
-    //public decimal Total
-    //{
-    //    get
-    //    {
-    //        //return CartLines.Sum(c=>(c.Product.UnitPrice ?? 0)*c.Quantity);
-    //    }
-    //}
+    public decimal Total
+    {
+        get
+        {
+            return CartLines.Sum(c => (c.Product.UnitPrice ?? 0) * c.Quantity);
+        }
+    }
 
 }
