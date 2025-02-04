@@ -1,0 +1,34 @@
+﻿@model ProductAddViewModel
+
+<form asp-action="add" method="post">
+    <div class="form-group">
+        <label>Product Name</label>
+        <input asp-for="Product.ProductName" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Unit Price</label>
+        <input asp-for="Product.UnitPrice" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Units in Stock</label>
+        <input asp-for="Product.UnitsInStock" type="text" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleFormControlSelect2">Example multiple select</label>
+        <select asp-for="Product.CategoryId" class="form-control" id="exampleFormControlSelect2">
+            @foreach (var item in Model.Categories)
+            {
+                <option value="@item.CategoryId">@item.CategoryName</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary mt-3 " type="submit">Add Product</button>
+    </div>
+
+
+</form>

@@ -1,0 +1,58 @@
+﻿@model CartListViewModel
+
+<h2>Your Cart</h2>
+<table class="table">
+
+    <tr>
+        <td>Product Name</td>
+        <td>Unit Price</td>
+        <td>Units In Stock</td>
+        <td>Quantity</td>
+    </tr>
+    @foreach (var item in Model.Cart.CartLines)
+    {
+        <tr>
+            <td>@item.Product.ProductName</td>
+            <td>@item.Product.UnitPrice</td>
+            <td>@item.Product.UnitsInStock</td>
+            <td>@item.Quantity</td>
+            <td class="text-right">
+                <a asp-controller="Cart" asp-action="Remove" asp-route-productId="@item.Product.ProductId"    class="btn btn-xs btn-danger">Remove From Cart</a>
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <h3>Total</h3>
+        </td>
+        <td class="text-right">
+            <h3>
+                <strong>
+                    @Model.Cart.Total
+                </strong>
+            </h3>
+        </td>
+    </tr>
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-xs btn-outline-info">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.5 23l-8.5-4.535v-3.953l5.4 3.122 3.1-3.406v8.772zm1-.001v-8.806l3.162 3.343 5.338-2.958v3.887l-8.5 4.534zm-10.339-10.125l-2.161-1.244 3-3.302-3-2.823 8.718-4.505 3.215 2.385 3.325-2.385 8.742 4.561-2.995 2.771 2.995 3.443-2.242 1.241v-.001l-5.903 3.27-3.348-3.541 7.416-3.962-7.922-4.372-7.923 4.372 7.422 3.937v.024l-3.297 3.622-5.203-3.008-.16-.092-.679-.393v.002z" /></svg>
+                Continue Shopping
+            </a>
+        </td>
+        <td>
+            <a asp-controller="Cart" asp-action="Complete" class="btn btn-xs btn-outline-info">
+                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.19 7h2.81v15h-21v-5h-2.81v-15h21v5zm1.81 1h-19v13h19v-13zm-9.5 1c3.036 0 5.5 2.464 5.5 5.5s-2.464 5.5-5.5 5.5-5.5-2.464-5.5-5.5 2.464-5.5 5.5-5.5zm0 1c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm.5 8h-1v-.804c-.767-.16-1.478-.689-1.478-1.704h1.022c0 .591.326.886.978.886.817 0 1.327-.915-.167-1.439-.768-.27-1.68-.676-1.68-1.693 0-.796.573-1.297 1.325-1.448v-.798h1v.806c.704.161 1.313.673 1.313 1.598h-1.018c0-.788-.727-.776-.815-.776-.55 0-.787.291-.787.622 0 .247.134.497.957.768 1.056.344 1.663.845 1.663 1.746 0 .651-.376 1.288-1.313 1.448v.788zm6.19-11v-4h-19v13h1.81v-9h17.19z" /></svg>
+                Go to checkout
+            </a>
+        </td>
+    </tr>
+</table>

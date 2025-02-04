@@ -2,8 +2,10 @@
 
 namespace ECommerce.Domain.Models;
 
-public class ShoppingDetails
+public class ShippingDetails
 {
+   
+
     public required string Firstname { get; set; }
     public required string Lastname { get; set; }
 

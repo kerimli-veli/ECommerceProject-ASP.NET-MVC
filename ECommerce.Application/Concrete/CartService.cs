@@ -4,14 +4,17 @@ using ECommerce.Domain.Models;
 
 namespace ECommerce.Application.Concrete
 {
-    public interface CartService : ICartService
+    public class CartService : ICartService
     {
         public void AddToCart(Cart cart, Product product)
         {
             CartLine cartLine = cart.CartLines.FirstOrDefault(cl => cl.Product.ProductId == product.ProductId)!;
             if (cartLine != null)
                 cartLine.Quantity++;
-            cart.CartLines.Add(new CartLine { Quantity = 1, Product = product });
+            else
+            {
+                cart.CartLines.Add(new CartLine { Quantity = 1, Product = product });
+            }
         }
 
         public List<CartLine> List(Cart cart)
