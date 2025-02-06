@@ -3,8 +3,10 @@ using ECommerce.Application.Concrete;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Context;
 using ECommerce.DataAccess.Implementation;
+using ECommerce.WebUI.Entities;
 using ECommerce.WebUI.Services;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,10 +38,26 @@ builder.Services.AddScoped<ISummaryOfSalesByQuarterService, SummaryOfSalesByQuar
 
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<NorthWindDbContext>(opt =>
+//builder.Services.AddDbContext<NorthWindDbContext>(opt =>
+//{
+//    opt.UseSqlServer(conn);
+//});
+
+builder.Services.AddDbContext<CustomIdentityDbContext>(opt =>
 {
     opt.UseSqlServer(conn);
 });
+
+
+
+builder.Services.AddIdentity<CustomIdentityUser, CustomIdentityRole>()
+    .AddEntityFrameworkStores<CustomIdentityDbContext>()
+    .AddDefaultTokenProviders();
+
+
+
+
+
 
 
 var app = builder.Build();
